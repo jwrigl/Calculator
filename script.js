@@ -36,7 +36,7 @@ function buildNumberGrid() {
         container.appendChild(btn)
     }
     container.style.display = "grid";
-    container.style.gridTemplateColumns=`repeat(3), 20px)`;
+    container.style.gridTemplateColumns = "repeat(3, 3rem)";
 
 }
 
@@ -52,7 +52,7 @@ function buildOperatorGrid() {
         container.appendChild(btn)
     }
     container.style.display = "grid";
-    container.style.gridTemplateColumns=`repeat(1), 2rem)`;
+    container.style.gridTemplateColumns=`repeat(1, 3rem)`;
 
 }
 

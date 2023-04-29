@@ -2,3 +2,12 @@
     display: flex;
     flex-direction: column;
 }
+
+#mainContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+#buttonsContainer {
+    display: flex;
+}
