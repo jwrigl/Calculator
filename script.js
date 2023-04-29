@@ -70,28 +70,41 @@ function buildOutputScreen() {
         let div = document.createElement("div");
         div.setAttribute("id",`output${i}`);
         div.setAttribute("class","outputText");
-        div.innerText=`test${i}`
+        div.innerText=`test${i}`;
         container.appendChild(div)
     }
 
 }
 
+function updateOutput(numberOne) {
+    console.log("run")
+    outputOne = document.querySelector("#output1")
+    outputOne.innerText=numberOne
+
+
+}
+
 function inputListener() {
     let buttons = document.querySelectorAll(".calculatorButtons");
-    let numberRegex = /^\d$/
-    let operatorRegex = /^[+\-*/]$/
+    let calculation = [];
+    let numberOne = "";
+    let numberTwo = "";
+    let numberRegex = /^\d$/ ;
+    let operatorRegex = /^[+\-*/]$/ ;
     buttons.forEach(btn => {
         btn.addEventListener("click", () => {
             if(numberRegex.test(btn.innerText)) {
-                console.log(btn.innerText)
+                console.log(btn.innerText);
+                numberOne = numberOne + btn.innerText;
+                updateOutput(numberOne)
             }
 
             if(btn.innerText === "=") {
-                console.log("=")
+                console.log("=");
             }
 
             if(operatorRegex.test(btn.innerText)) {
-                console.log(btn.innerText)
+                console.log(btn.innerText);
             }
 
 
@@ -102,6 +115,8 @@ function inputListener() {
     })
 
 }
+
+
 
 buildCalculator()
 inputListener()
