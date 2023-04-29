@@ -42,8 +42,8 @@ function buildNumberGrid() {
 
 function buildOperatorGrid() {
     let container = document.querySelector("#operatorContainer");
-    let operators = ["*","+","-","/"];
-    for (i=0;i<4;i++) {
+    let operators = ["*","+","-","/","="];
+    for (i=0;i<5;i++) {
         let btn = document.createElement("button");
         btn.setAttribute("id",operators[i]);
         btn.setAttribute("class","operatorButtons");
@@ -78,9 +78,14 @@ function inputListener() {
                 console.log(btn.innerText)
             }
 
+            if(btn.innerText === "=") {
+                console.log("=")
+            }
+
             if(operatorRegex.test(btn.innerText)) {
                 console.log(btn.innerText)
             }
+
 
 
 
