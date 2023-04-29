@@ -76,12 +76,18 @@ function buildOutputScreen() {
 
 }
 
-function updateOutput(numberOne) {
+function updateOutput(outputText) {
     console.log("run")
     outputOne = document.querySelector("#output1")
-    outputOne.innerText=numberOne
+    outputOne.innerText=outputText
 
 
+}
+
+function relayOutput() {
+    outputZero = document.querySelector("#output0")
+    outputOne = document.querySelector("#output1")
+    outputZero.innerText=outputOne.innerText;
 }
 
 function inputListener() {
@@ -93,18 +99,26 @@ function inputListener() {
     let operatorRegex = /^[+\-*/]$/ ;
     buttons.forEach(btn => {
         btn.addEventListener("click", () => {
-            if(numberRegex.test(btn.innerText)) {
-                console.log(btn.innerText);
-                numberOne = numberOne + btn.innerText;
+            if(numberRegex.test(btn.id)) {
+                console.log(btn.id);
+                numberOne = numberOne + btn.id;
                 updateOutput(numberOne)
             }
 
-            if(btn.innerText === "=") {
+            if(btn.id === "=") {
                 console.log("=");
             }
 
-            if(operatorRegex.test(btn.innerText)) {
-                console.log(btn.innerText);
+            if(operatorRegex.test(btn.id)) {
+                console.log(btn.id);
+                if(numberOne === "") {
+                    console.log("Please enter a number");
+                }
+                else {
+                    relayOutput()
+                    updateOutput(btn.id)
+                }
+
             }
 
 
