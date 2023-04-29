@@ -19,6 +19,13 @@ function divide(numberOne, numberTwo) {
     }
 }  
 
+function clear() {
+    outputs = document.querySelector(".outputText")
+    outputs.forEach(output => {
+        output.style.innerText=""
+    })
+}
+
 function buildCalculator() {
     buildOutputScreen()
     buildNumberGrid()
@@ -37,6 +44,7 @@ function buildNumberGrid() {
     }
     container.style.display = "grid";
     container.style.gridTemplateColumns = "repeat(3, 3rem)";
+    container.style.gridTemplateRows = "repeat(4, 3rem)";
 
 }
 
