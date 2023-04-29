@@ -70,12 +70,19 @@ function buildOutputScreen() {
 
 function inputListener() {
     let buttons = document.querySelectorAll(".calculatorButtons");
-    let regex = /^\d$/
+    let numberRegex = /^\d$/
+    let operatorRegex = /^[+\-*/]$/
     buttons.forEach(btn => {
         btn.addEventListener("click", () => {
-            if(regex.test(btn.innerText)) {
+            if(numberRegex.test(btn.innerText)) {
                 console.log(btn.innerText)
             }
+
+            if(operatorRegex.test(btn.innerText)) {
+                console.log(btn.innerText)
+            }
+
+
 
 
         } )
