@@ -94,17 +94,17 @@ function relayOutput() {
 function runCalculation (calculation) {
     switch (calculation[1]) {
         case "+":
-          add(calculation[0],calculation[1]);
-          break;
+            let result = add(calculation[0],calculation[2]);
+            return result;
         case "-":
-          subtract(calculation[0],calculation[1]);
-          break;
+            result = subtract(calculation[0],calculation[2]);
+            return result;
         case "*":
-          multiply(calculation[0],calculation[1]);
-          break;
+            result = multiply(calculation[0],calculation[2]);
+            return result;
         case "/":
-          divide(calculation[0],calculation[1]);
-          break;
+            result =divide(calculation[0],calculation[2]);
+            return result;
         default:
           console.log("Invalid operator");
       }
@@ -132,6 +132,8 @@ function inputListener() {
                     console.log("Please enter an additional operand")
                 }
                 calculation.push(numberTwo)
+                result = runCalculation(calculation)
+                updateOutput(result)
             }
 
             if(operatorRegex.test(btn.id)) {
