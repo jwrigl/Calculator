@@ -155,6 +155,11 @@ function inputListener() {
             }
 
             if(btn.id ==="clear") {
+                numberOne = ""
+                calculation = []
+                updateOutput(" ")
+                relayOutput()
+                updateOutput("0")
 
             }
 
