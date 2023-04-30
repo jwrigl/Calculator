@@ -92,30 +92,36 @@ function relayOutput() {
 }
 
 function runCalculation (calculation) {
+    calculation[0] = parseInt(calculation[0]);
+    calculation[2] = parseInt(calculation[2]);
+    let result = 0
     switch (calculation[1]) {
         case "+":
-            let result = add(calculation[0],calculation[2]);
+            result = add(calculation[0],calculation[2]);
             return result;
         case "-":
             result = subtract(calculation[0],calculation[2]);
-            return result;
+            return subtractresult;
         case "*":
             result = multiply(calculation[0],calculation[2]);
             return result;
         case "/":
-            result =divide(calculation[0],calculation[2]);
+            result = divide(calculation[0],calculation[2]);
             return result;
         default:
           console.log("Invalid operator");
       }
-    }
+}
+
+function convertToIntegers(calculation) {
+
+}
 
 
 function inputListener() {
     let buttons = document.querySelectorAll(".calculatorButtons");
     let calculation = [];
     let numberOne = "";
-    let numberTwo = "";
     let numberRegex = /^\d$/ ;
     let operatorRegex = /^[+\-*/]$/ ;
     buttons.forEach(btn => {
@@ -131,7 +137,7 @@ function inputListener() {
                 if(calculation.length === 2) {
                     console.log("Please enter an additional operand")
                 }
-                calculation.push(numberTwo)
+                calculation.push(numberOne)
                 result = runCalculation(calculation)
                 updateOutput(result)
             }
@@ -142,6 +148,7 @@ function inputListener() {
                 if (operatorRegex.test(outputOne.data)){
                     return;
                 }
+                //checks if no number has been assigned
                 else if(numberOne === "") {
                     console.log("Please enter a number");
                 }
@@ -150,6 +157,7 @@ function inputListener() {
                     updateOutput(btn.id)
                     calculation.push(numberOne)
                     calculation.push(btn.id)
+                    numberOne = "";
                 }
                 console.log(btn.id);
 
