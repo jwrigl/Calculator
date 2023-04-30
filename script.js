@@ -79,6 +79,7 @@ function buildOutputScreen() {
 function updateOutput(outputText) {
     console.log("run")
     outputOne = document.querySelector("#output1")
+    outputOne.setAttribute("data","outputText")
     outputOne.innerText=outputText
 
 
@@ -88,6 +89,10 @@ function relayOutput() {
     outputZero = document.querySelector("#output0")
     outputOne = document.querySelector("#output1")
     outputZero.innerText=outputOne.innerText;
+}
+
+function runCalculation () {
+
 }
 
 function inputListener() {
@@ -107,17 +112,28 @@ function inputListener() {
 
             if(btn.id === "=") {
                 console.log("=");
+                if(calculation.length === 2) {
+                    console.log("Please enter an additional operand")
+                }
+                calculation.push(numberTwo)
             }
 
             if(operatorRegex.test(btn.id)) {
-                console.log(btn.id);
-                if(numberOne === "") {
+                outputOne = document.querySelector("#output1");
+                //test if operator already been assigned
+                if (operatorRegex.test(outputOne.data)){
+                    return;
+                }
+                else if(numberOne === "") {
                     console.log("Please enter a number");
                 }
                 else {
                     relayOutput()
                     updateOutput(btn.id)
+                    calculation.push(numberOne)
+                    calculation.push(btn.id)
                 }
+                console.log(btn.id);
 
             }
 
