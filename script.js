@@ -115,23 +115,41 @@ function relayOutput() {
     outputZero.innerText=outputOne.innerText;
 }
 
+function round(result){
+    console.log("round")
+    resultString = result.toString()
+    console.log(resultString.length)
+    if(resultString.length > 5) {
+        result = result.toFixed(5)
+        console.log(result)
+        return result
+    }
+    else {
+        return result;
+    }
+    
+}
 function runCalculation (calculation) {
     calculation[0] = parseFloat(calculation[0]);
     calculation[2] = parseFloat(calculation[2]);
-    console.log(calculation)
+    console.log(calculation);
     let result = 0;
     switch (calculation[1]) {
         case "+":
             result = add(calculation[0],calculation[2]);
+            result = round(result);
             return result;
         case "-":
             result = subtract(calculation[0],calculation[2]);
+            result = round(result);
             return result;
         case "*":
             result = multiply(calculation[0],calculation[2]);
+            result = round(result);
             return result;
         case "/":
             result = divide(calculation[0],calculation[2]);
+            result = round(result);
             return result;
         default:
           console.log("Invalid operator");
