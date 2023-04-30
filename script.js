@@ -91,9 +91,25 @@ function relayOutput() {
     outputZero.innerText=outputOne.innerText;
 }
 
-function runCalculation () {
+function runCalculation (calculation) {
+    switch (calculation[1]) {
+        case "+":
+          add(calculation[0],calculation[1]);
+          break;
+        case "-":
+          subtract(calculation[0],calculation[1]);
+          break;
+        case "*":
+          multiply(calculation[0],calculation[1]);
+          break;
+        case "/":
+          divide(calculation[0],calculation[1]);
+          break;
+        default:
+          console.log("Invalid operator");
+      }
+    }
 
-}
 
 function inputListener() {
     let buttons = document.querySelectorAll(".calculatorButtons");
