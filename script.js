@@ -30,6 +30,7 @@ function buildCalculator() {
     buildOutputScreen()
     buildNumberGrid()
     buildOperatorGrid()
+    buildMiscButtons()
 }
 
 function buildNumberGrid() {
@@ -76,6 +77,17 @@ function buildOutputScreen() {
 
 }
 
+function buildMiscButtons() {
+    let container = document.querySelector("#miscContainer");
+    let btn = document.createElement("button")
+    btn.setAttribute("id","clear");
+    btn.setAttribute("class","miscButtons");
+    btn.classList.add("calculatorButtons")
+    btn.innerText="CE"
+    container.appendChild(btn)
+    
+}
+
 function updateOutput(outputText) {
     console.log("run")
     outputOne = document.querySelector("#output1")
@@ -114,12 +126,6 @@ function runCalculation (calculation) {
       }
 }
 
-function convertToIntegers(calculation) {
-
-}
-
-
-
 function inputListener() {
     let buttons = document.querySelectorAll(".calculatorButtons");
     let calculation = [];
@@ -146,6 +152,10 @@ function inputListener() {
                 //resets calculation list
                 calculation = []
                 calculation = [result]
+            }
+
+            if(btn.id ==="clear") {
+
             }
 
             if(operatorRegex.test(btn.id)) {
