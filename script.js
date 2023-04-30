@@ -94,14 +94,15 @@ function relayOutput() {
 function runCalculation (calculation) {
     calculation[0] = parseInt(calculation[0]);
     calculation[2] = parseInt(calculation[2]);
-    let result = 0
+    console.log(calculation)
+    let result = 0;
     switch (calculation[1]) {
         case "+":
             result = add(calculation[0],calculation[2]);
             return result;
         case "-":
             result = subtract(calculation[0],calculation[2]);
-            return subtractresult;
+            return result;
         case "*":
             result = multiply(calculation[0],calculation[2]);
             return result;
@@ -116,6 +117,7 @@ function runCalculation (calculation) {
 function convertToIntegers(calculation) {
 
 }
+
 
 
 function inputListener() {
@@ -138,8 +140,12 @@ function inputListener() {
                     console.log("Please enter an additional operand")
                 }
                 calculation.push(numberOne)
-                result = runCalculation(calculation)
+                let result = runCalculation(calculation)
+                console.log("result"+result)
                 updateOutput(result)
+                //resets calculation list
+                calculation = []
+                calculation = [result]
             }
 
             if(operatorRegex.test(btn.id)) {
@@ -155,7 +161,10 @@ function inputListener() {
                 else {
                     relayOutput()
                     updateOutput(btn.id)
-                    calculation.push(numberOne)
+                    //only push numberOne at the start of a new calculation 
+                    if (calculation.length !== 1) {
+                        calculation.push(numberOne)
+                    }
                     calculation.push(btn.id)
                     numberOne = "";
                 }
