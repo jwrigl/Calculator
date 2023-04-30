@@ -51,8 +51,8 @@ function buildNumberGrid() {
 
 function buildOperatorGrid() {
     let container = document.querySelector("#operatorContainer");
-    let operators = ["*","+","-","/","="];
-    for (i=0;i<5;i++) {
+    let operators = ["*","+","-","/",".","="];
+    for (i=0;i<operators.length;i++) {
         let btn = document.createElement("button");
         btn.setAttribute("id",operators[i]);
         btn.setAttribute("class","operatorButtons");
@@ -116,8 +116,8 @@ function relayOutput() {
 }
 
 function runCalculation (calculation) {
-    calculation[0] = parseInt(calculation[0]);
-    calculation[2] = parseInt(calculation[2]);
+    calculation[0] = parseFloat(calculation[0]);
+    calculation[2] = parseFloat(calculation[2]);
     console.log(calculation)
     let result = 0;
     switch (calculation[1]) {
@@ -180,6 +180,15 @@ function inputListener() {
                 updateOutput(numberOne)
                 
 
+            }
+
+            if(btn.id === ".") {
+                if (numberOne.includes(".")) {
+                    console.log("Number already contains decimal")
+                    return;
+                }
+                numberOne = numberOne + btn.id;
+                updateOutput(numberOne)
             }
 
             if(operatorRegex.test(btn.id)) {
