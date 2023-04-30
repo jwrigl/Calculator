@@ -79,13 +79,27 @@ function buildOutputScreen() {
 
 function buildMiscButtons() {
     let container = document.querySelector("#miscContainer");
+    buildClearButton(container)
+    buildDeleteLastButton(container)
+    
+}
+
+function buildDeleteLastButton(container) {
+    let btn = document.createElement("button")
+    btn.setAttribute("id","deleteLast");
+    btn.setAttribute("class","miscButtons");
+    btn.classList.add("calculatorButtons")
+    btn.innerText="Backspace"
+    container.appendChild(btn)
+}
+
+function buildClearButton (container) {
     let btn = document.createElement("button")
     btn.setAttribute("id","clear");
     btn.setAttribute("class","miscButtons");
     btn.classList.add("calculatorButtons")
-    btn.innerText="CE"
+    btn.innerText="CE";
     container.appendChild(btn)
-    
 }
 
 function updateOutput(outputText) {
@@ -93,8 +107,6 @@ function updateOutput(outputText) {
     outputOne = document.querySelector("#output1")
     outputOne.setAttribute("data","outputText")
     outputOne.innerText=outputText
-
-
 }
 
 function relayOutput() {
@@ -156,10 +168,17 @@ function inputListener() {
 
             if(btn.id ==="clear") {
                 numberOne = ""
-                calculation = []
+                calculation = [];
                 updateOutput(" ")
                 relayOutput()
                 updateOutput("0")
+
+            }
+
+            if(btn.id === "deleteLast") {
+                numberOne = numberOne.slice(0,-1)
+                updateOutput(numberOne)
+                
 
             }
 
