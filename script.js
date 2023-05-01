@@ -171,16 +171,19 @@ function inputListener() {
 
             if(btn.id === "=") {
                 console.log("=");
-                if(calculation.length === 2) {
-                    console.log("Please enter an additional operand")
+                console.log(calculation.length)
+                if(calculation.length !== 2 ) {
+                    console.log("Please enter an additional operand/operator")
                 }
-                calculation.push(numberOne)
-                let result = runCalculation(calculation)
-                console.log("result"+result)
-                updateOutput(result)
-                //resets calculation list
-                calculation = []
-                calculation = [result]
+                else {
+                    calculation.push(numberOne)
+                    let result = runCalculation(calculation)
+                    console.log("result"+result)
+                    updateOutput(result)
+                    //resets calculation list
+                    calculation = []
+                    calculation = [result]
+                }
             }
 
             if(btn.id ==="clear") {
