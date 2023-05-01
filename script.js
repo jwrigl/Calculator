@@ -116,12 +116,9 @@ function relayOutput() {
 }
 
 function round(result){
-    console.log("round")
     resultString = result.toString()
-    console.log(resultString.length)
     if(resultString.length > 5) {
         result = result.toFixed(5)
-        console.log(result)
         return result
     }
     else {
@@ -166,8 +163,10 @@ function inputListener() {
         btn.addEventListener("click", () => {
             if(numberRegex.test(btn.id)) {
                 console.log(btn.id);
-                numberOne = numberOne + btn.id;
-                updateOutput(numberOne)
+                if(numberOne !== "0") {
+                    numberOne = numberOne + btn.id;
+                    updateOutput(numberOne)
+                }
             }
 
             if(btn.id === "=") {
