@@ -77,7 +77,7 @@ function buildOutputScreen() {
         let div = document.createElement("div");
         div.setAttribute("id",`output${i}`);
         div.setAttribute("class","outputText");
-        div.setAttribute("data","none")
+        div.setAttribute("data","")
         div.innerText=`test${i}`;
         container.appendChild(div)
     }
@@ -122,7 +122,7 @@ function updateOutput(outputText,outputNumber,amend) {
         outputData = output.getAttribute("data")
         let currentOutputText = outputData;
         let newOutputText = currentOutputText + outputText;
-        output.setAttribute("data",outputText)
+        output.setAttribute("data",newOutputText)
         output.innerText=newOutputText;
     }
 
@@ -195,7 +195,7 @@ function numberEntry(numberOne,btn) {
     if(numberOne !== "0") {
         numberOne = numberOne + btn.id;
         updateOutput(numberOne,1,false)
-        updateOutput(numberOne,0,true)
+        updateOutput(btn.id,0,true)
         return numberOne;
     }
     else {
@@ -232,6 +232,7 @@ function inputListener() {
                     let result = runCalculation(calculation)
                     console.log("result"+result)
                     updateOutput(result,1,false)
+                    updateOutput("="+result,0,true)
                     //resets calculation list
                     calculation = []
                     calculation = [result]
