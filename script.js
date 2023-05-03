@@ -166,25 +166,39 @@ function runCalculation (calculation) {
       }
 }
 
+function numberEntry(numberOne,btn) {
+    //makes sure first entry does not equal zero (stops user entering 0123)
+    if(numberOne !== "0") {
+        numberOne = numberOne + btn.id;
+        updateOutput(numberOne)
+        return numberOne;
+    }
+    else {
+        return numberOne;
+    }
+}
+
+
 function inputListener() {
+    //select all calculator buttons
     let buttons = document.querySelectorAll(".calculatorButtons");
+    //list object to send to runCalculation
     let calculation = [];
+    //number entered by user
     let numberOne = "";
+    //regex to verify number or operator entry
     let numberRegex = /^\d$/ ;
     let operatorRegex = /^[+\-*/]$/ ;
+    //for every calculator button
     buttons.forEach(btn => {
         btn.addEventListener("click", () => {
+            //tests if a number
             if(numberRegex.test(btn.id)) {
-                console.log(btn.id);
-                if(numberOne !== "0") {
-                    numberOne = numberOne + btn.id;
-                    updateOutput(numberOne)
-                }
-            }
+                numberOne = numberEntry(numberOne,btn)
 
+            }
             if(btn.id === "=") {
-                console.log("=");
-                console.log(calculation.length)
+                //checks that there is an operand and operator before the last number entry
                 if(calculation.length !== 2 ) {
                     console.log("Please enter an additional operand/operator")
                 }
@@ -256,6 +270,7 @@ function inputListener() {
     })
 
 }
+
 
 
 
