@@ -46,6 +46,11 @@ function buildNumberGrid() {
     container.style.display = "grid";
     container.style.gridTemplateColumns = "repeat(3, 3rem)";
     container.style.gridTemplateRows = "repeat(4, 3rem)";
+    container.style.gridTemplateAreas = `
+    "top-left top-right"
+    "bottom-left bottom-right"
+  `;
+
 
 }
 
@@ -116,10 +121,17 @@ function relayOutput() {
 }
 
 function round(result){
-    resultString = result.toString()
-    if(resultString.length > 5) {
-        result = result.toFixed(5)
-        return result
+    let resultString = result.toString()
+    if (resultString.includes(".")) {
+        let splitList = resultString.split(".")
+        console.log(splitList.length)
+        if(splitList[1].length > 5) {
+            result = result.toFixed(5)
+            return result
+        }
+        else {
+            return result;
+        }
     }
     else {
         return result;

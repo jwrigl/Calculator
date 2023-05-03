@@ -1,6 +1,8 @@
 #outputContainer {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    height: 3rem;
 }
 
 #mainContainer {
@@ -11,3 +13,4 @@
 #buttonsContainer {
     display: flex;
 }
+
