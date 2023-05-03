@@ -77,6 +77,7 @@ function buildOutputScreen() {
         let div = document.createElement("div");
         div.setAttribute("id",`output${i}`);
         div.setAttribute("class","outputText");
+        div.setAttribute("data","none")
         div.innerText=`test${i}`;
         container.appendChild(div)
     }
@@ -108,17 +109,40 @@ function buildClearButton (container) {
     container.appendChild(btn)
 }
 
-function updateOutput(outputText) {
-    console.log("run")
-    outputOne = document.querySelector("#output1")
-    outputOne.setAttribute("data","outputText")
-    outputOne.innerText=outputText
+function updateOutput(outputText,outputNumber,amend) {
+    let output;
+    if (outputNumber === 0) {
+        output = document.querySelector("#output0")
+    }
+    else if (outputNumber === 1 ) {
+        output = document.querySelector("#output1")
+    }
+
+    if (amend === true) {
+        outputData = output.getAttribute("data")
+        let currentOutputText = outputData;
+        let newOutputText = currentOutputText + outputText;
+        output.setAttribute("data",outputText)
+        output.innerText=newOutputText;
+    }
+
+    else {
+        output.setAttribute("data",outputText)
+        output.innerText=outputText;
+    }
+
 }
 
 function relayOutput() {
     outputZero = document.querySelector("#output0")
+
     outputOne = document.querySelector("#output1")
-    outputZero.innerText=outputOne.innerText;
+    outputOneData = outputOne.getAttribute("data")
+
+    outputZero.setAttribute("data",outputOneData)
+    outputZero.innerText=outputOneData
+
+    
 }
 
 function round(result){
@@ -170,7 +194,8 @@ function numberEntry(numberOne,btn) {
     //makes sure first entry does not equal zero (stops user entering 0123)
     if(numberOne !== "0") {
         numberOne = numberOne + btn.id;
-        updateOutput(numberOne)
+        updateOutput(numberOne,1,false)
+        updateOutput(numberOne,0,true)
         return numberOne;
     }
     else {
@@ -206,7 +231,7 @@ function inputListener() {
                     calculation.push(numberOne)
                     let result = runCalculation(calculation)
                     console.log("result"+result)
-                    updateOutput(result)
+                    updateOutput(result,1,false)
                     //resets calculation list
                     calculation = []
                     calculation = [result]
@@ -216,15 +241,15 @@ function inputListener() {
             if(btn.id ==="clear") {
                 numberOne = ""
                 calculation = [];
-                updateOutput(" ")
+                updateOutput(" ",1,false)
                 relayOutput()
-                updateOutput("0")
+                updateOutput("0",1,false)
 
             }
 
             if(btn.id === "deleteLast") {
                 numberOne = numberOne.slice(0,-1)
-                updateOutput(numberOne)
+                updateOutput(numberOne,1,false)
                 
 
             }
@@ -235,13 +260,16 @@ function inputListener() {
                     return;
                 }
                 numberOne = numberOne + btn.id;
-                updateOutput(numberOne)
+                updateOutput(numberOne,1,false)
             }
 
             if(operatorRegex.test(btn.id)) {
                 outputOne = document.querySelector("#output1");
                 //test if operator already been assigned
-                if (operatorRegex.test(outputOne.data)){
+                outputOneData = outputOne.getAttribute("data");
+                console.log("output data "+outputOneData)
+                if (operatorRegex.test(outputOneData)){
+                    console.log("Operator already entered")
                     return;
                 }
                 //checks if no number has been assigned
@@ -249,8 +277,12 @@ function inputListener() {
                     console.log("Please enter a number");
                 }
                 else {
+                    //write number entry to sum output
                     relayOutput()
-                    updateOutput(btn.id)
+                    //change numberEntry to operator
+                    updateOutput(btn.id,1,false)
+                    //change sum to amend the operator
+                    updateOutput(btn.id,0,true)
                     //only push numberOne at the start of a new calculation 
                     if (calculation.length !== 1) {
                         calculation.push(numberOne)
@@ -258,7 +290,6 @@ function inputListener() {
                     calculation.push(btn.id)
                     numberOne = "";
                 }
-                console.log(btn.id);
 
             }
 
