@@ -13,6 +13,7 @@ function multiply(numberOne, numberTwo) {
 function divide(numberOne, numberTwo) {
     if (numberTwo === 0) {
         console.log("Error 404, Chuck Norris not found.");
+        return "Over 9000";
     }
     else {
         return numberOne / numberTwo;
@@ -127,7 +128,7 @@ function round(result){
         console.log(splitList.length)
         if(splitList[1].length > 5) {
             result = result.toFixed(5)
-            return result
+            return result;
         }
         else {
             return result;
