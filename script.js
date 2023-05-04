@@ -298,10 +298,7 @@ function inputListener() {
             }
 
             if(operatorRegex.test(btn.id)) {
-                outputOne = document.querySelector("#output1");
-                //test if operator already been assigned
-                outputOneData = outputOne.getAttribute("data");
-                console.log("output data "+outputOneData)
+                outputOneData = getOutputData("1")
                 if (operatorRegex.test(outputOneData)){
                     console.log("Operator already entered")
                     return;
