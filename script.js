@@ -242,96 +242,102 @@ function evaluate(calculation,numberOne) {
 
 }
 
-function keyListener() {
-    let buttons = document.querySelectorAll(".calculatorButtons");
-}
 function inputListener() {
-    //select all calculator buttons
-    let buttons = document.querySelectorAll(".calculatorButtons");
-    //list object to send to runCalculation
+    const buttons = document.querySelectorAll(".calculatorButtons");
     let calculation = [];
-    //number entered by user
     let numberOne = "";
-    //regex to verify number or operator entry
     let numberRegex = /^\d$/ ;
     let operatorRegex = /^[+\-*/]$/ ;
-    //for every calculator button
-    buttons.forEach(btn => {
-        btn.addEventListener("click", () => {
-            //tests if a number
-            if(numberRegex.test(btn.id)) {
-                numberOne = numberEntry(numberOne,btn)
 
+    const handleNumber = (btn) => {
+        numberOne = numberEntry(numberOne, btn);
+    };
+
+    const handleOperator = (btn) => {
+        const outputOneData = getOutputData("1");
+
+        if (operatorRegex.test(outputOneData)) {
+        console.log("Operator already entered");
+        return;
+        }
+
+        if (numberOne === "") {
+        console.log("Please enter a number");
+        return;
+        }
+
+        relayOutput();
+        updateOutput(btn.id, 1, false);
+        updateOutput(btn.id, 0, true);
+
+        if (calculation.length !== 1) {
+        calculation.push(numberOne);
+        }
+
+        calculation.push(btn.id);
+        numberOne = "";
+    };
+
+    const handleEqual = () => {
+        if (calculation.length !== 2) {
+        console.log("Please enter an additional operand/operator");
+        return;
+        }
+
+        calculation = evaluate(calculation, numberOne);
+    };
+
+    const handleClear = () => {
+        numberOne = "";
+        calculation = [];
+        updateOutput(" ", 1, false);
+        relayOutput();
+        updateOutput("0", 1, false);
+    };
+
+    const handleDelete = () => {
+        numberOne = deleteLast(numberOne);
+    };
+
+    const handleDecimal = () => {
+        if (numberOne.includes(".")) {
+        console.log("Number already contains decimal");
+        return;
+        }
+
+        numberOne += ".";
+        updateOutput(numberOne, 1, false);
+    };
+
+    buttons.forEach((btn) => {
+        switch (btn.id) {
+        case "=":
+            btn.addEventListener("click", handleEqual);
+            break;
+
+        case "clear":
+            btn.addEventListener("click", handleClear);
+            break;
+
+        case "deleteLast":
+            btn.addEventListener("click", handleDelete);
+            break;
+
+        case ".":
+            btn.addEventListener("click", handleDecimal);
+            break;
+
+        default:
+            if (numberRegex.test(btn.id)) {
+            btn.addEventListener("click", () => handleNumber(btn));
+            } else if (operatorRegex.test(btn.id)) {
+            btn.addEventListener("click", () => handleOperator(btn));
             }
-            if(btn.id === "=") {
-                //checks that there is an operand and operator before the last number entry
-                if(calculation.length !== 2 ) {
-                    console.log("Please enter an additional operand/operator")
-                }
-                else {
-                    calculation = evaluate(calculation,numberOne)
-                }
-            }
-
-            if(btn.id ==="clear") {
-                numberOne = ""
-                calculation = [];
-                updateOutput(" ",1,false)
-                relayOutput()
-                updateOutput("0",1,false)
-
-            }
-
-            if(btn.id === "deleteLast") {
-                numberOne = deleteLast(numberOne)
-                
-
-            }
-
-            if(btn.id === ".") {
-                if (numberOne.includes(".")) {
-                    console.log("Number already contains decimal")
-                    return;
-                }
-                numberOne = numberOne + btn.id;
-                updateOutput(numberOne,1,false)
-            }
-
-            if(operatorRegex.test(btn.id)) {
-                outputOneData = getOutputData("1")
-                if (operatorRegex.test(outputOneData)){
-                    console.log("Operator already entered")
-                    return;
-                }
-                //checks if no number has been assigned
-                else if(numberOne === "") {
-                    console.log("Please enter a number");
-                }
-                else {
-                    //write number entry to sum output
-                    relayOutput()
-                    //change numberEntry to operator
-                    updateOutput(btn.id,1,false)
-                    //change sum to amend the operator
-                    updateOutput(btn.id,0,true)
-                    //only push numberOne at the start of a new calculation 
-                    if (calculation.length !== 1) {
-                        calculation.push(numberOne)
-                    }
-                    calculation.push(btn.id)
-                    numberOne = "";
-                }
-
-            }
-
-
-
-
-
-        } )
-    })
-
+            break;
+        }
+    });
 }
+
 
 
 
