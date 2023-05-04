@@ -218,7 +218,6 @@ function getOutputData(outputNumber) {
 
 function deleteLast(numberOne) {
     if (numberOne === "") {
-        console.log("its nothing")
         return "";
     }
     numberOne = numberOne.slice(0,-1)
@@ -230,7 +229,22 @@ function deleteLast(numberOne) {
 
     return numberOne;
 }
+function evaluate(calculation,numberOne) {
+    calculation.push(numberOne)
+    let result = runCalculation(calculation)
+    console.log("result"+result)
+    updateOutput(result,1,false)
+    updateOutput("="+result,0,true)
+    //resets calculation list
+    calculation = []
+    calculation = [result]
+    return calculation;
 
+}
+
+function keyListener() {
+    let buttons = document.querySelectorAll(".calculatorButtons");
+}
 function inputListener() {
     //select all calculator buttons
     let buttons = document.querySelectorAll(".calculatorButtons");
@@ -255,14 +269,7 @@ function inputListener() {
                     console.log("Please enter an additional operand/operator")
                 }
                 else {
-                    calculation.push(numberOne)
-                    let result = runCalculation(calculation)
-                    console.log("result"+result)
-                    updateOutput(result,1,false)
-                    updateOutput("="+result,0,true)
-                    //resets calculation list
-                    calculation = []
-                    calculation = [result]
+                    calculation = evaluate(calculation,numberOne)
                 }
             }
 
