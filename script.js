@@ -203,6 +203,29 @@ function numberEntry(numberOne,btn) {
     }
 }
 
+//function deleteLast() {
+//    output = document.querySelector("#output1")
+//    outputData = output.getAttribute("data")
+ //   lastEntry = outputData.charAt(outputdata.length - 1)
+//    if(lastEntry)
+//}
+
+function getOutputData(outputNumber) {
+    output = document.querySelector("#output"+outputNumber)
+    outputData = output.getAttribute("data")
+    return outputData
+}
+
+function deleteLast(numberOne) {
+    numberOne = numberOne.slice(0,-1)
+    updateOutput(numberOne,1,false)
+
+    outputZeroData = getOutputData("0")
+    newOutputZeroData=outputZeroData.slice(0,-1)
+    updateOutput(newOutputZeroData,0,false)
+
+    return numberOne;
+}
 
 function inputListener() {
     //select all calculator buttons
@@ -249,8 +272,7 @@ function inputListener() {
             }
 
             if(btn.id === "deleteLast") {
-                numberOne = numberOne.slice(0,-1)
-                updateOutput(numberOne,1,false)
+                numberOne = deleteLast(numberOne)
                 
 
             }
