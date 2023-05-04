@@ -217,6 +217,10 @@ function getOutputData(outputNumber) {
 }
 
 function deleteLast(numberOne) {
+    if (numberOne === "") {
+        console.log("its nothing")
+        return "";
+    }
     numberOne = numberOne.slice(0,-1)
     updateOutput(numberOne,1,false)
 
