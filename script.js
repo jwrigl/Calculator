@@ -230,6 +230,7 @@ function deleteLast(numberOne) {
     return numberOne;
 }
 function evaluate(calculation,numberOne) {
+    console.log("working eval")
     calculation.push(numberOne)
     let result = runCalculation(calculation)
     console.log("result"+result)
@@ -283,7 +284,7 @@ function inputListener() {
         console.log("Please enter an additional operand/operator");
         return;
         }
-
+        console.log("just before eval")
         calculation = evaluate(calculation, numberOne);
     };
 
@@ -314,9 +315,10 @@ function inputListener() {
         case "=":
             btn.addEventListener("click", handleEquals); 
             document.addEventListener("keyup", (e) => {
-                console.log(e)
-                if(e.key === "=") {
-                    handleEquals
+                console.log("equals"+e)
+                if(e.key === "Enter") {
+                    console.log("working")
+                    handleEquals();
                 }
             })
             break;
@@ -327,7 +329,7 @@ function inputListener() {
 
                 console.log(e)
                 if(e.key === "Escape") {
-                    handleClear
+                    handleClear();
                 }
             })
             break;
@@ -337,7 +339,7 @@ function inputListener() {
             document.addEventListener("keyup", (e) => {
                 console.log(e)
                 if(e.key === "Backspace") {
-                    handleDelete
+                    handleDelete();
                 }
             })
             break;
@@ -347,7 +349,7 @@ function inputListener() {
             document.addEventListener("keyup", (e) => {
                 console.log(e)
                 if(e.key === ".") {
-                    handleDecimal
+                    handleDecimal();
                 }
             })
             break;
