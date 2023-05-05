@@ -190,12 +190,12 @@ function runCalculation (calculation) {
       }
 }
 
-function numberEntry(numberOne,btn) {
+function numberEntry(numberOne,key) {
     //makes sure first entry does not equal zero (stops user entering 0123)
     if(numberOne !== "0") {
-        numberOne = numberOne + btn.id;
+        numberOne = numberOne + key;
         updateOutput(numberOne,1,false)
-        updateOutput(btn.id,0,true)
+        updateOutput(key,0,true)
         return numberOne;
     }
     else {
@@ -249,11 +249,11 @@ function inputListener() {
     let numberRegex = /^\d$/ ;
     let operatorRegex = /^[+\-*/]$/ ;
 
-    const handleNumber = (btn) => {
-        numberOne = numberEntry(numberOne, btn);
+    const handleNumber = (key) => {
+        numberOne = numberEntry(numberOne, key);
     };
 
-    const handleOperator = (btn) => {
+    const handleOperator = (key) => {
         const outputOneData = getOutputData("1");
 
         if (operatorRegex.test(outputOneData)) {
@@ -267,18 +267,18 @@ function inputListener() {
         }
 
         relayOutput();
-        updateOutput(btn.id, 1, false);
-        updateOutput(btn.id, 0, true);
+        updateOutput(key, 1, false);
+        updateOutput(key, 0, true);
 
         if (calculation.length !== 1) {
         calculation.push(numberOne);
         }
 
-        calculation.push(btn.id);
+        calculation.push(key);
         numberOne = "";
     };
 
-    const handleEqual = () => {
+    const handleEquals = () => {
         if (calculation.length !== 2) {
         console.log("Please enter an additional operand/operator");
         return;
@@ -312,31 +312,101 @@ function inputListener() {
     buttons.forEach((btn) => {
         switch (btn.id) {
         case "=":
-            btn.addEventListener("click", handleEqual);
+            btn.addEventListener("click", handleEquals); 
+            document.addEventListener("keyup", (e) => {
+                console.log(e)
+                if(e.key === "=") {
+                    handleEquals
+                }
+            })
             break;
 
         case "clear":
             btn.addEventListener("click", handleClear);
+            document.addEventListener("keyup", (e) => {
+
+                console.log(e)
+                if(e.key === "Escape") {
+                    handleClear
+                }
+            })
             break;
 
         case "deleteLast":
             btn.addEventListener("click", handleDelete);
+            document.addEventListener("keyup", (e) => {
+                console.log(e)
+                if(e.key === "Backspace") {
+                    handleDelete
+                }
+            })
             break;
 
         case ".":
             btn.addEventListener("click", handleDecimal);
+            document.addEventListener("keyup", (e) => {
+                console.log(e)
+                if(e.key === ".") {
+                    handleDecimal
+                }
+            })
             break;
 
         default:
             if (numberRegex.test(btn.id)) {
-            btn.addEventListener("click", () => handleNumber(btn));
+                btn.addEventListener("click", () => handleNumber(btn.id));
             } else if (operatorRegex.test(btn.id)) {
-            btn.addEventListener("click", () => handleOperator(btn));
+                btn.addEventListener("click", () => handleOperator(btn.id));
             }
             break;
         }
     });
+    
+    document.addEventListener("keyup", (e) => {
+        if(numberRegex.test(e.key)) {
+            handleNumber(e.key)
+        }
+    })
+    document.addEventListener("keyup", (e) => {
+        if(operatorRegex.test(e.key)) {
+            console.log(e.key)
+            handleOperator(e.key)
+        }
+    })
+
+    
 }
+    /*document.addEventListener('keyup', (event) => {
+           const keyCode = event.keyCode;      
+        switch (keyCode) {
+          case 13: // enter
+            handleEquals();
+            break;
+          case 27: // esc
+            handleClear();
+            break;
+          case 8: // backspace
+            handleDelete();
+            break;
+          default:
+            const key = String.fromCharCode(keyCode);
+            console.log(key)
+            if (numberRegex.test(key)) {
+                btn.addEventListener("keyup", () => handleNumber(btn));
+            } else if (operatorRegex.test(key)) {
+                btn.addEventListener("keyup", () => handleOperator(btn));
+            }
+            break;
+
+            const button = document.querySelector("#"+key);
+            if (button) {
+              handleButtonClick(button);
+            }
+            break;
+        }
+      });
+}
+*/
 
 
 
