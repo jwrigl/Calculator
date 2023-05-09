@@ -36,7 +36,7 @@ function buildCalculator() {
 
 function buildNumberGrid() {
     let container = document.querySelector("#numberContainer");
-    for (i=9;i>=0;i--) {
+    for (let i=9;i>=0;i--) {
         let btn = document.createElement("button");
         btn.setAttribute("id",i);
         btn.setAttribute("class","numberButtons");
@@ -46,19 +46,21 @@ function buildNumberGrid() {
         btn.innerText=i
         container.appendChild(btn)
     }
-    container.style.display = "grid";
+    container.style.gridArea = "number"
+    /*container.style.display = "grid";
     container.style.gridGap = "1rem"
     container.style.gridTemplateColumns = "repeat(3, 1fr)";
     container.style.gridTemplateRows = "repeat(4, 1fr)";
     container.style.direction = "rtl";
     container.style.gridAutoRows = "max-content";
-    container.style.width = "75%"
+    container.style.width = "75%"*/
 }
 
 function buildOperatorGrid() {
     let container = document.querySelector("#operatorContainer");
     let operators = ["*","+","-","/",".","="];
-    for (i=0;i<operators.length;i++) {
+    container.style.gridArea = "operator"
+    for (let i=0;i<operators.length;i++) {
         let btn = document.createElement("button");
         btn.setAttribute("id",operators[i]);
         btn.setAttribute("class","operatorButtons");
@@ -68,11 +70,11 @@ function buildOperatorGrid() {
         btn.style.color = "#D42450"
         container.appendChild(btn)
     }
-    container.style.display = "grid";
+    /*container.style.display = "grid";
     container.style.gridTemplateColumns=`repeat(1, 1fr)`;
     container.style.gridGap = "1rem"
     container.style.width = "25%"
-
+    */
 }
 
 function buildOutputScreen() {
@@ -104,6 +106,7 @@ function buildDeleteLastButton(container) {
     btn.innerText="Backspace"
     btn.style.backgroundColor = "#D42450";
     btn.style.color = "#301D78"
+    container.style.gridArea = "misc"
     container.appendChild(btn)
 }
 
@@ -115,6 +118,7 @@ function buildClearButton(container) {
     btn.innerText="CE";
     btn.style.backgroundColor = "#D42450";
     btn.style.color = "#301D78"
+    container.style.gridArea = "misc"
     container.appendChild(btn)
 }
 
