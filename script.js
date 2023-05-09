@@ -316,6 +316,7 @@ function inputListener() {
 
         numberOne += ".";
         updateOutput(numberOne, 1, false);
+        updateOutput(".", 0, true);
     };
 
     buttons.forEach((btn) => {
