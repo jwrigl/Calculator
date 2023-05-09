@@ -40,6 +40,8 @@ function buildNumberGrid() {
         let btn = document.createElement("button");
         btn.setAttribute("id",i);
         btn.setAttribute("class","numberButtons");
+        btn.style.backgroundColor = "#301D78";
+        btn.style.color = "#D42450"
         btn.classList.add("calculatorButtons")
         btn.innerText=i
         container.appendChild(btn)
@@ -47,10 +49,7 @@ function buildNumberGrid() {
     container.style.display = "grid";
     container.style.gridTemplateColumns = "repeat(3, 3rem)";
     container.style.gridTemplateRows = "repeat(4, 3rem)";
-    container.style.gridTemplateAreas = `
-    "top-left top-right"
-    "bottom-left bottom-right"
-  `;
+    container.style.direction = "rtl";
 
 
 }
@@ -64,6 +63,8 @@ function buildOperatorGrid() {
         btn.setAttribute("class","operatorButtons");
         btn.classList.add("calculatorButtons")
         btn.innerText=operators[i];
+        btn.style.backgroundColor = "#301D78";
+        btn.style.color = "#D42450"
         container.appendChild(btn)
     }
     container.style.display = "grid";
@@ -79,6 +80,7 @@ function buildOutputScreen() {
         div.setAttribute("class","outputText");
         div.setAttribute("data","")
         div.innerText=`test${i}`;
+        div.style.backgroundColor = "#00A7B5";
         container.appendChild(div)
     }
 
@@ -97,15 +99,19 @@ function buildDeleteLastButton(container) {
     btn.setAttribute("class","miscButtons");
     btn.classList.add("calculatorButtons")
     btn.innerText="Backspace"
+    btn.style.backgroundColor = "#D42450";
+    btn.style.color = "#301D78"
     container.appendChild(btn)
 }
 
-function buildClearButton (container) {
+function buildClearButton(container) {
     let btn = document.createElement("button")
     btn.setAttribute("id","clear");
     btn.setAttribute("class","miscButtons");
     btn.classList.add("calculatorButtons")
     btn.innerText="CE";
+    btn.style.backgroundColor = "#D42450";
+    btn.style.color = "#301D78"
     container.appendChild(btn)
 }
 
