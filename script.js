@@ -47,10 +47,11 @@ function buildNumberGrid() {
         container.appendChild(btn)
     }
     container.style.display = "grid";
-    container.style.gridTemplateColumns = "repeat(3, 3rem)";
-    container.style.gridTemplateRows = "repeat(4, 3rem)";
+    container.style.gridTemplateColumns = "repeat(3, 1fr)";
+    container.style.gridTemplateRows = "repeat(4, 1fr)";
     container.style.direction = "rtl";
-
+    container.style.gridAutoRows = "max-content";
+    container.style.width = "25%"
 
 }
 
@@ -68,7 +69,8 @@ function buildOperatorGrid() {
         container.appendChild(btn)
     }
     container.style.display = "grid";
-    container.style.gridTemplateColumns=`repeat(1, 3rem)`;
+    container.style.gridTemplateColumns=`repeat(1, 1fr)`;
+    container.style.width = "10%"
 
 }
 

@@ -19,11 +19,14 @@ body {
     align-items: center;
     justify-content: center;
     height: 80vh;
-    width: 60vw;
+    width: 60vw;    
 }
 
 #buttonsContainer {
     display: flex;
+    height: 40vh;
+    width: 60vw;
+    justify-content: center;
 }
 
 #outputContainer {
