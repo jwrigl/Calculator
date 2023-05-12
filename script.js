@@ -47,13 +47,7 @@ function buildNumberGrid() {
         btn.style.gridArea = `number${i}`
         container.appendChild(btn)
     }
-    /*container.style.display = "grid";
-    container.style.gridGap = "1rem"
-    container.style.gridTemplateColumns = "repeat(3, 1fr)";
-    container.style.gridTemplateRows = "repeat(4, 1fr)";
-    container.style.direction = "rtl";
-    container.style.gridAutoRows = "max-content";
-    container.style.width = "75%"*/
+
 }
 
 function buildOperatorGrid() {
@@ -70,11 +64,7 @@ function buildOperatorGrid() {
         btn.style.gridArea = `operator${i}`
         container.appendChild(btn)
     }
-    /*container.style.display = "grid";
-    container.style.gridTemplateColumns=`repeat(1, 1fr)`;
-    container.style.gridGap = "1rem"
-    container.style.width = "25%"
-    */
+
 }
 
 function buildOutputScreen() {
@@ -216,12 +206,6 @@ function numberEntry(numberOne,key) {
     }
 }
 
-//function deleteLast() {
-//    output = document.querySelector("#output1")
-//    outputData = output.getAttribute("data")
- //   lastEntry = outputData.charAt(outputdata.length - 1)
-//    if(lastEntry)
-//}
 
 function getOutputData(outputNumber) {
     output = document.querySelector("#output"+outputNumber)
@@ -396,37 +380,6 @@ function inputListener() {
 
     
 }
-    /*document.addEventListener('keyup', (event) => {
-           const keyCode = event.keyCode;      
-        switch (keyCode) {
-          case 13: // enter
-            handleEquals();
-            break;
-          case 27: // esc
-            handleClear();
-            break;
-          case 8: // backspace
-            handleDelete();
-            break;
-          default:
-            const key = String.fromCharCode(keyCode);
-            console.log(key)
-            if (numberRegex.test(key)) {
-                btn.addEventListener("keyup", () => handleNumber(btn));
-            } else if (operatorRegex.test(key)) {
-                btn.addEventListener("keyup", () => handleOperator(btn));
-            }
-            break;
-
-            const button = document.querySelector("#"+key);
-            if (button) {
-              handleButtonClick(button);
-            }
-            break;
-        }
-      });
-}
-*/
 
 
 
