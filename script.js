@@ -236,10 +236,15 @@ function deleteLast(numberOne) {
     if (numberOne === "") {
         return "";
     }
+
+
     numberOne = numberOne.slice(0,-1)
     updateOutput(numberOne,1,false)
 
     outputZeroData = getOutputData("0")
+
+    if (outputZeroData)
+
     newOutputZeroData=outputZeroData.slice(0,-1)
     updateOutput(newOutputZeroData,0,false)
 
@@ -271,18 +276,24 @@ function inputListener() {
     };
 
     const handleOperator = (key) => {
+
         function hasNonAlphanumericCharacters(str) {
             return /[^a-zA-Z0-9\.]/.test(str);
-          }
-
-        const outputZeroData = getOutputData("0");
-
-        if (hasNonAlphanumericCharacters(outputZeroData)) {
-            console.log("Operator already entered");
-            return;
         }
 
-        if (numberOne === "") {
+        function hasEquals(str) {
+            return /[\=]/.test(str)
+        }
+
+        const outputZeroData = getOutputData("0");
+        
+        if(!hasEquals(outputZeroData)) {
+            if (hasNonAlphanumericCharacters(outputZeroData)) {
+                console.log("Operator already entered");
+                return;
+            }
+        }
+        else if (numberOne === "") {
             console.log("Please enter a number");
             return;
         }
