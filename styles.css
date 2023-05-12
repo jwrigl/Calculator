@@ -23,17 +23,18 @@ body {
 
 #gridContainer {
     display: grid;
-    height: 40vh;
-    width: 30vw;
+    height: auto;
+    width: auto;
     justify-content: center;
-    grid-template-columns: 100px 100px 100px 100px;
-    grid-template-rows: 100px 100px 100px 100px;
+    grid-template-columns: 100px 100px 100px 100px ;
+    grid-template-rows: 100px 100px 100px 100px 100px;
+    gap: 10px;
     grid-template-areas: 
-    "misc . . misc"
-    "number number number operator"
-    "number number number operator"
-    "number number number operator"
-    "operator number operator operator"
+    "clearButton . . deleteButton"
+    "number1 number2 number3 operator0"
+    "number4 number5 number6 operator1"
+    "number7 number8 number9 operator2"
+    "operator4 number0 operator5 operator3"
 }
 
 #outputContainer {

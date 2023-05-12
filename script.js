@@ -35,7 +35,7 @@ function buildCalculator() {
 }
 
 function buildNumberGrid() {
-    let container = document.querySelector("#numberContainer");
+    let container = document.querySelector("#gridContainer");
     for (let i=9;i>=0;i--) {
         let btn = document.createElement("button");
         btn.setAttribute("id",i);
@@ -44,9 +44,9 @@ function buildNumberGrid() {
         btn.style.color = "#D42450"
         btn.classList.add("calculatorButtons")
         btn.innerText=i
+        btn.style.gridArea = `number${i}`
         container.appendChild(btn)
     }
-    container.style.gridArea = "number"
     /*container.style.display = "grid";
     container.style.gridGap = "1rem"
     container.style.gridTemplateColumns = "repeat(3, 1fr)";
@@ -57,9 +57,8 @@ function buildNumberGrid() {
 }
 
 function buildOperatorGrid() {
-    let container = document.querySelector("#operatorContainer");
+    let container = document.querySelector("#gridContainer");
     let operators = ["*","+","-","/",".","="];
-    container.style.gridArea = "operator"
     for (let i=0;i<operators.length;i++) {
         let btn = document.createElement("button");
         btn.setAttribute("id",operators[i]);
@@ -68,6 +67,7 @@ function buildOperatorGrid() {
         btn.innerText=operators[i];
         btn.style.backgroundColor = "#301D78";
         btn.style.color = "#D42450"
+        btn.style.gridArea = `operator${i}`
         container.appendChild(btn)
     }
     /*container.style.display = "grid";
@@ -92,7 +92,7 @@ function buildOutputScreen() {
 }
 
 function buildMiscButtons() {
-    let container = document.querySelector("#miscContainer");
+    let container = document.querySelector("#gridContainer");
     buildClearButton(container)
     buildDeleteLastButton(container)
     
@@ -106,7 +106,7 @@ function buildDeleteLastButton(container) {
     btn.innerText="Backspace"
     btn.style.backgroundColor = "#D42450";
     btn.style.color = "#301D78"
-    container.style.gridArea = "misc"
+    btn.style.gridArea = "deleteButton"
     container.appendChild(btn)
 }
 
@@ -118,7 +118,7 @@ function buildClearButton(container) {
     btn.innerText="CE";
     btn.style.backgroundColor = "#D42450";
     btn.style.color = "#301D78"
-    container.style.gridArea = "misc"
+    btn.style.gridArea = "clearButton"
     container.appendChild(btn)
 }
 
