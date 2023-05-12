@@ -42,3 +42,9 @@ body {
     background-color: #00A7B5;
     justify-content: center;
 }
+
+#calculatorContainer {
+    background-color: #404040;
+    border-radius: 1rem;
+    padding: 3rem;
+}
