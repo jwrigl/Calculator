@@ -44,6 +44,7 @@ function buildNumberGrid() {
         btn.style.color = "#D42450"
         btn.style.fontSize = "2rem"
         btn.style.fontWeight ="bold"
+        btn.style.borderRadius = "1rem"
         btn.classList.add("calculatorButtons")
         btn.innerText=i
         btn.style.gridArea = `number${i}`
@@ -63,6 +64,7 @@ function buildOperatorGrid() {
         btn.innerText=operators[i];
         btn.style.backgroundColor = "#301D78";
         btn.style.color = "#D42450"
+        btn.style.borderRadius = "1rem"
         btn.style.fontSize = "2rem"
         btn.style.fontWeight ="bold"
         btn.style.gridArea = `operator${i}`
@@ -112,6 +114,7 @@ function buildDeleteLastButton(container) {
     btn.style.backgroundColor = "#D42450";
     btn.style.color = "#301D78"
     btn.style.fontSize = "2rem"
+    btn.style.borderRadius = "1rem"
     btn.style.fontWeight ="bold"
     btn.style.gridArea = "deleteButton"
     container.appendChild(btn)
@@ -126,6 +129,7 @@ function buildClearButton(container) {
     btn.style.backgroundColor = "#D42450";
     btn.style.fontSize = "2rem"
     btn.style.fontWeight ="bold"
+    btn.style.borderRadius = "1rem"
     btn.style.color = "#301D78"
     btn.style.gridArea = "clearButton"
     container.appendChild(btn)
@@ -285,10 +289,12 @@ function inputListener() {
             return /[\=]/.test(str)
         }
 
-        const outputZeroData = getOutputData("0");
-        
+        let outputZeroData = getOutputData("0");
+        let outputOneData = getOutputData("1");
+
         if(!hasEquals(outputZeroData)) {
             if (hasNonAlphanumericCharacters(outputZeroData)) {
+                console.log(outputZeroData)
                 console.log("Operator already entered");
                 return;
             }
@@ -296,6 +302,9 @@ function inputListener() {
         else if (numberOne === "") {
             console.log("Please enter a number");
             return;
+        }
+        else if (outputOneData === "Over 9000") {
+            return ;    
         }
 
         relayOutput();
@@ -322,7 +331,7 @@ function inputListener() {
     const handleClear = () => {
         numberOne = "";
         calculation = [];
-        updateOutput(" ", 1, false);
+        updateOutput("", 1, false);
         relayOutput();
         updateOutput("0", 1, false);
     };
