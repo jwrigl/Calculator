@@ -268,16 +268,20 @@ function inputListener() {
     };
 
     const handleOperator = (key) => {
-        const outputOneData = getOutputData("1");
+        function hasNonAlphanumericCharacters(str) {
+            return /[^a-zA-Z0-9]/.test(str);
+          }
 
-        if (operatorRegex.test(outputOneData)) {
-        console.log("Operator already entered");
-        return;
+        const outputZeroData = getOutputData("0");
+
+        if (hasNonAlphanumericCharacters(outputZeroData)) {
+            console.log("Operator already entered");
+            return;
         }
 
         if (numberOne === "") {
-        console.log("Please enter a number");
-        return;
+            console.log("Please enter a number");
+            return;
         }
 
         relayOutput();
@@ -285,7 +289,7 @@ function inputListener() {
         updateOutput(key, 0, true);
 
         if (calculation.length !== 1) {
-        calculation.push(numberOne);
+            calculation.push(numberOne);
         }
 
         calculation.push(key);
