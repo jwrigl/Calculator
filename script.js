@@ -42,6 +42,8 @@ function buildNumberGrid() {
         btn.setAttribute("class","numberButtons");
         btn.style.backgroundColor = "#301D78";
         btn.style.color = "#D42450"
+        btn.style.fontSize = "2rem"
+        btn.style.fontWeight ="bold"
         btn.classList.add("calculatorButtons")
         btn.innerText=i
         btn.style.gridArea = `number${i}`
@@ -61,6 +63,8 @@ function buildOperatorGrid() {
         btn.innerText=operators[i];
         btn.style.backgroundColor = "#301D78";
         btn.style.color = "#D42450"
+        btn.style.fontSize = "2rem"
+        btn.style.fontWeight ="bold"
         btn.style.gridArea = `operator${i}`
         container.appendChild(btn)
     }
@@ -104,9 +108,11 @@ function buildDeleteLastButton(container) {
     btn.setAttribute("id","deleteLast");
     btn.setAttribute("class","miscButtons");
     btn.classList.add("calculatorButtons")
-    btn.innerText="Backspace"
+    btn.innerText="Del."
     btn.style.backgroundColor = "#D42450";
     btn.style.color = "#301D78"
+    btn.style.fontSize = "2rem"
+    btn.style.fontWeight ="bold"
     btn.style.gridArea = "deleteButton"
     container.appendChild(btn)
 }
@@ -118,6 +124,8 @@ function buildClearButton(container) {
     btn.classList.add("calculatorButtons")
     btn.innerText="CE";
     btn.style.backgroundColor = "#D42450";
+    btn.style.fontSize = "2rem"
+    btn.style.fontWeight ="bold"
     btn.style.color = "#301D78"
     btn.style.gridArea = "clearButton"
     container.appendChild(btn)
