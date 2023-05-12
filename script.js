@@ -74,10 +74,21 @@ function buildOutputScreen() {
         div.setAttribute("id",`output${i}`);
         div.setAttribute("class","outputText");
         div.setAttribute("data","")
-        div.innerText=`test${i}`;
-        div.style.backgroundColor = "#00A7B5";
+        div.style.display = "flex";
+        div.style.justifyContent ="right";
+        container.style.backgroundColor = "#00A7B5";
+        if (i === 1) {
+            div.style.fontSize = "2rem"
+            div.innerText="0"
+        }
+        container.style.display="flex"
+        container.style.height  = "4rem"
+        container.style.padding = "0.5rem"
+        container.style.borderRadius = "0.2rem"
+        container.style.marginBottom = "1rem"
         container.appendChild(div)
     }
+
 
 }
 
@@ -253,7 +264,7 @@ function inputListener() {
 
     const handleOperator = (key) => {
         function hasNonAlphanumericCharacters(str) {
-            return /[^a-zA-Z0-9]/.test(str);
+            return /[^a-zA-Z0-9\.]/.test(str);
           }
 
         const outputZeroData = getOutputData("0");
