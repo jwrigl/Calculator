@@ -218,6 +218,10 @@ function runCalculation (calculation) {
 
 function numberEntry(numberOne,key) {
     //makes sure first entry does not equal zero (stops user entering 0123)
+    outputZeroData = getOutputData(0)
+    if(outputZeroData.includes("=")) {
+        return ;
+    }
     if(numberOne !== "0") {
         numberOne = numberOne + key;
         updateOutput(numberOne,1,false)
